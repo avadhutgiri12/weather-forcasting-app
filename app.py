@@ -15,7 +15,7 @@ import os
 # -------------------
 API_KEY = "54227622caf10f3698a6c14399c42dc6"
 BASE_URL = "https://api.openweathermap.org/data/2.5/"
-DATA_PATH = "../data/weather.csv"
+DATA_PATH = "./data/weather.csv"
 
 # -------------------
 # FETCH CURRENT WEATHER
@@ -157,7 +157,7 @@ def main():
             """)
 
             st.subheader("📈 7-Day Weather Forecast")
-            st.dataframe(forecast_df,use_container_width=True,hide_index=True)
+            st.dataframe(forecast_df,hide_index=True)
 
             st.download_button("Download Forecast CSV", forecast_df.to_csv(index=False), file_name="forecast.csv")
             st.subheader("📊 Forecast Trends")
@@ -170,7 +170,7 @@ def main():
             st.line_chart(forecast_df.set_index('Date')[['Predicted Wind Speed (km/h)']])
             st.subheader("Precipitation")
             st.line_chart(forecast_df.set_index('Date')[['Predicted Precipitation (mm)']])
-            st.dataframe(forecast_df)
+            
         except Exception as e:
             st.error(f"Something went wrong: {e}")
 
